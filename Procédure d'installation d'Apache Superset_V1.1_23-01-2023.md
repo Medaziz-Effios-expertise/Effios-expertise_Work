@@ -32,9 +32,9 @@ Une démarche accompagnée par
  
 6. [Mise en place du système de requêtage asynchrone](#Mise-en-place-du-système-de-requêtage-asynchrone)
 
-7. [Lancement de Superset](#Lancement de Superset)
+7. [Lancement de Superset](#Lancement-de-Superset)
 
-8. [Connexion à une base de données externe](#Connexion à une base de données externe)
+8. [Connexion à une base de données externe](#Connexion-à-une-base-de-données-externe)
 
 <br>
 
@@ -43,14 +43,14 @@ Une démarche accompagnée par
    Le dépôt git d'Apache Superset est accessible sur le lien suivant : [https://github.com/khansaeffios/superset](https://github.com/khansaeffios/superset)
 
    Il faut cloner ce dépôt git et ouvrir le dossier superset. La version de Superset à cloner est la version  **2.0.0** :
-    ```
-    git clone --depth 1 --branch 2.0.0
-    ```
+        ```
+        git clone --depth 1 --branch 2.0.0
+        ```
      https://github.com/khansaeffios/superset.git
 
-     ```
-    cd superset
-    ```
+        ```
+        cd superset
+        ```
 
 L'installation de Superset se fait ensuite en deux temps : l'installation du backend puis celle du frontend.
 
