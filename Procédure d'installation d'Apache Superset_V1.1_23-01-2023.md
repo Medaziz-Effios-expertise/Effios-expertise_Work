@@ -13,43 +13,48 @@ Une démarche accompagnée par
 
 # Table des matières
 
-[Mise en place de l'environnement](#Mise-en-place-de-l'environnement)
+1. [Mise en place de l'environnement](#Mise-en-place-de-l'environnement)
 
-1. [Installation du backend](#Installation-du-backend)
+2. [Mise en place du backend](#Mise-en-place-du-backend)
 
     1. [Prérequis du backend](#Prérequis-du-backend)
 
     2. [Installation du backend](#Installation-du-backend)
 
-2. [Initialisation de la base de données](#Initialisation-de-la-base-de-données)
+3. [Initialisation de la base de données](#Initialisation-de-la-base-de-données)
 
-3. [Installation du frontend](#_Toc124235789)
+4. [Mise en place du frontend](#Mise-en-place-du-frontend)
 
     1. [Prérequis du frontend](#Prérequis-du-frontend)
 
-    2. [Installation](#_Toc124235791)
+    2. [Installation du frontend](#Installation-du-frontend)
+5. [Configuration du système de cache Superset](#Configuration-du-système-de-cache-Superset)
+ 
+6. [Mise en place du système de requêtage asynchrone](#Mise-en-place-du-système-de-requêtage-asynchrone)
 
-4. [Lancement de Superset](#_Toc124235792)
+7. [Lancement de Superset](#Lancement de Superset)
 
-5. [Connexion à une base de données externe](#_Toc124235793)
+8. [Connexion à une base de données externe](#Connexion à une base de données externe)
 
-# Mise en place de l'environnement :
+<br>
 
-Le dépôt git d'Apache Superset est accessible sur le lien suivant : [https://github.com/khansaeffios/superset](https://github.com/khansaeffios/superset)
+## **Mise en place de l'environnement** :
 
-Il faut cloner ce dépôt git et ouvrir le dossier superset. La version de Superset à cloner est la version  **2.0.0** :
-```
-git clone --depth 1 --branch 2.0.0
-```
- https://github.com/khansaeffios/superset.git
+   Le dépôt git d'Apache Superset est accessible sur le lien suivant : [https://github.com/khansaeffios/superset](https://github.com/khansaeffios/superset)
 
- ```
-cd superset
-```
+   Il faut cloner ce dépôt git et ouvrir le dossier superset. La version de Superset à cloner est la version  **2.0.0** :
+    ```
+    git clone --depth 1 --branch 2.0.0
+    ```
+     https://github.com/khansaeffios/superset.git
+
+     ```
+    cd superset
+    ```
 
 L'installation de Superset se fait ensuite en deux temps : l'installation du backend puis celle du frontend.
 
-## **Installation du backend**
+## **Mise en place du backend**
 
 1. ### **Prérequis du backend**
 
@@ -73,7 +78,7 @@ L'installation de Superset se fait ensuite en deux temps : l'installation du bac
     ```
     sudo apt install python3.9
     ```
-2. ### **Installation**
+2. ### **Installation du backend**
 
    1. **Créer un environnement virtuel**
 
@@ -189,9 +194,9 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
         ```
         Une fois ces étapes réalisées, le backend de Superset est mis en place.
 
-## **Installation du frontend**
+## **Mise en place du frontend**
 
-   1. ### **Prérequis**
+   1. ### **Prérequis du frontend**
 
       - Node.js version 16
       - npm version 7
@@ -212,7 +217,7 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
       ```
       nvm use 16
       ```
-   2. ### **Installation**
+   2. ### **Installation du frontend**
         Il faut ensuite installer les dépendances du package-lock.json avec :
 
         ```
@@ -223,141 +228,136 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
         ```
         npm run build
         ```
-# Mise en place du cache
+## **Mise en place du cache**
 
-Un système de cache est nécessaire sur Superset. Par défaut, sans système de cache configuré Superset, utilise une méthode de cache interne mais il est fortement conseillé d'utiliser un autre outil afin d'optimiser les requêtes.
+   Un système de cache est nécessaire sur Superset. Par défaut, sans système de cache configuré Superset, utilise une méthode de cache interne mais il est fortement conseillé d'utiliser un autre outil afin d'optimiser les requêtes.
 
-Nous allons donc installer **Redis** et configurer Superset à des fins de mise en cache.
+   Nous allons donc installer **Redis** et configurer Superset à des fins de mise en cache.
 
-## Installation de Redis
-```
-Upgrade apt-get :
-```
-```
-sudo apt-get update
-```
-```
-sudo apt-get upgrade
-```
-```
-Installer le serveur redis :
-```
-```
-sudo apt-get install redis-server
-```
-Changer le fichier de configuration redis :
-```
-sudo nano /etc/redis/redis.conf
-```
-Ajouter au fichier les lignes suivantes :
-```
-**# 128 MB max memory**
+   ## **Installation de Redis**
+        **Upgrade apt-get :**
+        ```
+        sudo apt-get update
+        ```
+        ```
+        sudo apt-get upgrade
+        ```
+        **Installer le serveur redis :**
+       
+        ```
+        sudo apt-get install redis-server
+        ```
+        **Changer le fichier de configuration redis :**
+        ```
+        sudo nano /etc/redis/redis.conf
+        ```
+       **Ajouter au fichier les lignes suivantes :**
+        ```
+        **# 128 MB max memory**
 
-**maxmemory 128mb**
+        **maxmemory 128mb**
 
-**# When mem overflow remove according to LRU algorithm**
+        **# When mem overflow remove according to LRU algorithm**
 
-**maxmemory-policy allkeys-lru**
-```
-Redémarrer et activer redis au redémarrage :
+        **maxmemory-policy allkeys-lru**
+        ```
+        **Redémarrer et activer redis au redémarrage :**
 
-- Redémarrer redis :
-```
-sudo systemctl restart redis-server.service
-```
-- Activer redis au redémarrage :
-```
-sudo systemctl enable redis-server.service
-```
-- S'assurer que redis s'affiche dans htop (touche F10 pour sortir de htop) :
-```
-htop
-```
-Pour s'assurer que redis fonctionne il est possible de lancer la commande suivante :
-```
-redis-cli monitor
-```
+            **Redémarrer redis :**
+            ```
+            sudo systemctl restart redis-server.service
+            ```
+            - Activer redis au redémarrage :
+            ```
+            sudo systemctl enable redis-server.service
+            ```
+            **S'assurer que redis s'affiche dans htop (touche F10 pour sortir de htop) :**
+            ```
+            htop
+            ```
+            **Pour s'assurer que redis fonctionne il est possible de lancer la commande suivante :**
+            ```
+            redis-cli monitor
+            ```
 ## Configuration du système de cache Superset
 
-Il faut dans un premier temps activer l'environnement virtuel depuis lequel Superset est lancé :
-```
-source superset-env/bin/activate
-```
-```
-Installer redis-py :
-```
-```
-pip install redis
-```
+    Il faut dans un premier temps activer l'environnement virtuel depuis lequel Superset est lancé :
+    ```
+    source superset-env/bin/activate
+    ```
+    ```
+    **Installer redis-py :**
+    ```
+    ```
+    pip install redis
+    ```
 # Mise en place du système de requêtage asynchrone
 
-Le fichier de configuration **superset\_config.py** est à mettre à jour avec les configurations permettant l'utilisation de Redis et de Celery. Nous vous fournissons le modèle de ce fichier de configuration mis à jour, veuillez mettre à jour la SECRET\_KEY et la base de de données PostgreSQL.
+    Le fichier de configuration **superset\_config.py** est à mettre à jour avec les configurations permettant l'utilisation de Redis et de Celery. Nous vous fournissons le modèle de ce fichier de configuration mis à jour, veuillez mettre à jour la SECRET\_KEY et la base de de données PostgreSQL.
 
-Il faut ensuite mettre à jour le fichier **config.py**  :
+    Il faut ensuite mettre à jour le fichier **config.py**  :
 
-- Rechercher la valeur **GLOBAL\_ASYNC\_QUERIES\_JWT\_SECRET** et remplacer **test-secret-change-me** par une clé de 32 bytes générée aléatoirement.
+    - Rechercher la valeur **GLOBAL\_ASYNC\_QUERIES\_JWT\_SECRET** et remplacer **test-secret-change-me** par une clé de 32 bytes générée aléatoirement.
 
-Vous pouvez générer la clé de GLOBAL\_ASYNC\_QUERIES\_JWT\_SECRET sur le lien suivant : [https://www.browserling.com/tools/random-bytes](https://www.browserling.com/tools/random-bytes) puis copier / coller la clé générée, par exemple :
+    Vous pouvez générer la clé de GLOBAL\_ASYNC\_QUERIES\_JWT\_SECRET sur le lien suivant : [https://www.browserling.com/tools/random-bytes](https://www.browserling.com/tools/random-bytes) puis copier / coller la clé générée, par exemple :
 
-![](RackMultipart20230310-1-5buoy6_html_c7f292bd97eb7337.png)
+    ![](RackMultipart20230310-1-5buoy6_html_c7f292bd97eb7337.png)
 
-Il faut ensuite lancer _celery_, _celery flower_ et _superset_ en parallèle sur trois terminaux différents, depuis l'environnement virtuel de Superset.
+    Il faut ensuite lancer _celery_, _celery flower_ et _superset_ en parallèle sur trois terminaux différents, depuis l'environnement virtuel de Superset.
 
-Lancer sur **tous ces terminaux (**si ce n'est pas déjà fait) :
-```
-source superset-env/bin/activate
-```
-L'étape suivante est d'installer celery flower sur le terminal depuis lequel il sera lancé :
-```
-pip install flower
-```
-Pour que les modifications de configuration soient prises en compte, il faut définir le chemin vers le fichier de configuration sur ces trois terminaux (il faut modifier la commande pour mettre le chemin exact vers le fichier superset\_config.py) :
-```
-export SUPERSET\_CONFIG\_PATH=/path/to/your/superset\_config.py
-```
-- Lancer celery (worker et beat) sur un terminal
-```
-celery --app=superset.tasks.celery\_app:app worker --pool=prefork -O fair -n worker%i%h & celery --app=superset.tasks.celery\_app:app beat
-```
-- Lancer flower sur un autre terminal
-```
-celery --app=superset.tasks.celery\_app:app flower --port=7386
-```
-Si vous rencontrer l'erreur :
+    **Lancer sur tous ces terminaux (si ce n'est pas déjà fait) :**
+        ```
+        source superset-env/bin/activate
+        ```
+    **L'étape suivante est d'installer celery flower sur le terminal depuis lequel il sera lancé :**
+        ```
+        pip install flower
+        ```
+    Pour que les modifications de configuration soient prises en compte, il faut définir le chemin vers le fichier de configuration sur ces trois terminaux (il faut modifier la commande pour mettre le chemin exact vers le fichier superset\_config.py) :
+        ```
+        export SUPERSET\_CONFIG\_PATH=/path/to/your/superset\_config.py
+        ```
+    **Lancer celery (worker et beat) sur un terminal**
+        ```
+        celery --app=superset.tasks.celery\_app:app worker --pool=prefork -O fair -n worker%i%h & celery --app=superset.tasks.celery\_app:app beat
+        ```
+    **Lancer flower sur un autre terminal**
+        ```
+        celery --app=superset.tasks.celery\_app:app flower --port=7386
+        ```
+    **Si vous rencontrer l'erreur :**
 
-Please make sure you give each node a unique nodename using
+    Please make sure you give each node a unique nodename using the celery worker `-n` option.
 
-the celery worker `-n` option.
+    warnings.warn(DuplicateNodenameWarning(
 
-warnings.warn(DuplicateNodenameWarning(
+    **Vous pouvez lancer :**
+        ```
+        ps auxww | grep 'celery\_app' | awk '{print $2}' | xargs kill -9
+        ```
+  Puis lancer superset sur un terminal différent avec gunicorn comme expliqué par la suite.
 
-Vous pouvez lancer :
-```
-ps auxww | grep 'celery\_app' | awk '{print $2}' | xargs kill -9
-```
-Puis lancer superset sur un terminal différent avec gunicorn comme expliqué par la suite.
+## **Lancement de Superset**
 
-# Lancement de Superset
+    **Installation des dépendances :**
+        ```
+        pip install mysqlclient
+        ```
+        ```
+        pip install gevent
+        ```
+    **Pour lancer Superset, il faut démarrer le serveur ssur le port 8088 avec Gunicorn (en mode Async) avec la commande :**
+        ```
+        gunicorn -w 10 -k gevent --timeout 120 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field\_size 0 "superset.app:create\_app()"
+        ```
+## **Connexion à une base de données externe**
 
-Installation des dépendances :
-```
-pip install mysqlclient
-```
-```
-pip install gevent
-```
-Pour lancer Superset, il faut démarrer le serveur ssur le port 8088 avec Gunicorn (en mode Async) avec la commande :
-```
-gunicorn -w 10 -k gevent --timeout 120 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field\_size 0 "superset.app:create\_app()"
-```
-# Connexion à une base de données externe
+    1. **Aller dans l'onglet « + » ensuite Data puis « Connect database »**
 
-1. **Aller dans l'onglet « + » ensuite Data puis « Connect database »**
+    ![](RackMultipart20230310-1-5buoy6_html_822b475cab553e2e.png)
 
-![](RackMultipart20230310-1-5buoy6_html_822b475cab553e2e.png)
-
-1. **Choisir le type de base de données à connecter (MYSQL par exemple)**
-2. **Renseigner les informations nécessaires**
+    2. **Choisir le type de base de données à connecter (MYSQL par exemple)**
+    3. **Renseigner les informations nécessaires**
 
 ![](RackMultipart20230310-1-5buoy6_html_79f452d772a165b9.png) ![](RackMultipart20230310-1-5buoy6_html_550e9c4fc076bcb3.png)
 
