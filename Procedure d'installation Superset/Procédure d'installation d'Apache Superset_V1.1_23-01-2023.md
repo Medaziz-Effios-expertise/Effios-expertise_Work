@@ -266,15 +266,13 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
 ## Configuration du système de cache Superset
 
     Il faut dans un premier temps activer l'environnement virtuel depuis lequel Superset est lancé :
-    ```
-    source superset-env/bin/activate
-    ```
-    ```
+        ```
+        source superset-env/bin/activate
+        ```
     **Installer redis-py :**
-    ```
-    ```
-    pip install redis
-    ```
+        ```
+        pip install redis
+        ```
 # Mise en place du système de requêtage asynchrone
 
     Le fichier de configuration **superset\_config.py** est à mettre à jour avec les configurations permettant l'utilisation de Redis et de Celery. Nous vous fournissons le modèle de ce fichier de configuration mis à jour, veuillez mettre à jour la SECRET\_KEY et la base de de données PostgreSQL.
