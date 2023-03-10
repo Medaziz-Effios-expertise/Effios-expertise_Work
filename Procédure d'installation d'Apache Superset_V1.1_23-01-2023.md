@@ -13,7 +13,7 @@ Une démarche accompagnée par
 
 # Table des matières
 
-[Mise en place de l'environnement : 4](#_Toc124235784)
+-Mise en place de l'environnement [Mise en place de l'environnement](#Mise-en-place-de-l'environnement)
 
 [Installation du backend 4](#_Toc124235785)
 
