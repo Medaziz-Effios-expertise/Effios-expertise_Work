@@ -44,10 +44,8 @@ Une démarche accompagnée par
 
    Il faut cloner ce dépôt git et ouvrir le dossier superset. La version de Superset à cloner est la version  **2.0.0** :
         ```
-        git clone --depth 1 --branch 2.0.0
+        git clone --depth 1 --branch 2.0.0 https://github.com/khansaeffios/superset.git
         ```
-     https://github.com/khansaeffios/superset.git
-
         ```
         cd superset
         ```
