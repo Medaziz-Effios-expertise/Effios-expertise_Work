@@ -2,7 +2,7 @@
 
 1. Créez un environnement virtuel et activez-le : 
    
-    ASSUREZ QUE PYTHON 3.9 EST INSTALLÉ
+    ASSUREZ QUE PYTHON 3.8 ou 3.9 EST INSTALLÉ
 
     Pour windows : https://www.python.org/downloads/windows/
 
@@ -37,8 +37,7 @@
 
 5. Modifier les traductions fr dans le fichier .po sous le chemin:
     ```
-    #path windows
-    Main-pathway\superset\superset\translations\fr\LC_MESSAGES\messages.po
+    superset/superset/translations/fr/LC_MESSAGES/messages.po
     ``` 
     via l'outil POEdit :          
         https://poedit.net/download
@@ -52,31 +51,17 @@
     ```
     cd superset-frontend
     npm install po2json
-	cd..
-	cd superset
     ```
 8. Convertir les fichiers PO en fichiers JSON, vous pouvez utiliser :
-    ```
-	#pour windows
-    ../superset-frontend/node_modules/.bin/po2json --domain superset --format jed1.x translations\fr\LC_MESSAGES\messages.po translations/fr/LC_MESSAGES/messages.json
-    ```
 	 ```
-	#pour linux
-    ../superset-frontend/node_modules/.bin/po2json --domain superset --format jed1.x translations/fr/LC_MESSAGES/messages.po translations/fr/LC_MESSAGES/messages.json
+    superset-frontend/node_modules/.bin/po2json --domain superset --format jed1.x superset/translations/fr/LC_MESSAGES/messages.po superset/translations/fr/LC_MESSAGES/messages.json
     ```
-9. Formatez les fichiers JSON avec Prettier :
+9. Formatez les fichiers JSON avec Prettier : 
     ```
-	#pour windows
-    ../superset-frontend/node_modules/.bin/prettier --write translations\fr\LC_MESSAGES\messages.json
-    ```    
-    ```
-	#pour linux
-    ../superset-frontend/node_modules/.bin/prettier --write translations/fr/LC_MESSAGES/messages.json
+    superset-frontend/node_modules/.bin/prettier --write superset/translations/fr/LC_MESSAGES/messages.json
     ```
 10. Pour que les traductions prennent effet, nous devons les compiler en fichiers MO binaires :
     ```
-    cd ..
-
     pybabel compile -d superset/translations
     ```
 Documentation de référence : <a href="https://superset.apache.org/docs/contributing/translations">Lien pour les documentations de traduction</a>
