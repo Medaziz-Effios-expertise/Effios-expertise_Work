@@ -8,11 +8,8 @@ Une démarche accompagnée par
 
 | Version | Date | Objet | Statut |
 | --- | --- | --- | --- |
-| 1.1 | 23/01/2023 |
-- Ajout de la méthode mise en place du cache
-- Ajout de la méthode de mise en place du requêtage asynchrone
- | Diffusable pour expérimentation |
-| 1.0 | 14/12/2022 | Rédaction d'une procédure d'installation d'Apache Superset | Diffusable pour expérimentation |
+| 1.1 | 23/01/2023 |- Ajout de la méthode mise en place du cache<br>- Ajout de la méthode de mise en place du requêtage asynchrone | Diffusable pour expérimentation |
+| 1.0 | 14/12/2022 |- Rédaction d'une procédure d'installation d'Apache Superset | Diffusable pour expérimentation |
 
 # Table des matières
 
