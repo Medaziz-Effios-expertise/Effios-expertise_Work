@@ -13,28 +13,18 @@ Une démarche accompagnée par
 
 # Table des matières
 
-1. [Mise en place de l'environnement](#Mise-en-place-de-l'environnement)
-
-2. [Mise en place du backend](#Mise-en-place-du-backend)
-
-    1. [Prérequis du backend](#Prérequis-du-backend)
-
-    2. [Installation du backend](#Installation-du-backend)
-
-3. [Initialisation de la base de données](#Initialisation-de-la-base-de-données)
-
-4. [Mise en place du frontend](#Mise-en-place-du-frontend)
-
-    1. [Prérequis du frontend](#Prérequis-du-frontend)
-
-    2. [Installation du frontend](#Installation-du-frontend)
-5. [Configuration du système de cache Superset](#Configuration-du-système-de-cache-Superset)
- 
-6. [Mise en place du système de requêtage asynchrone](#Mise-en-place-du-système-de-requêtage-asynchrone)
-
-7. [Lancement de Superset](#Lancement-de-Superset)
-
-8. [Connexion à une base de données externe](#Connexion-à-une-base-de-données-externe)
+- [**Procédure d'installation d'Apache Superset**](#procédure-dinstallation-dapache-superset)
+- [Table des matières](#table-des-matières)
+  - [**Mise en place de l'environnement** :](#mise-en-place-de-lenvironnement-)
+  - [**Mise en place du backend**](#mise-en-place-du-backend)
+  - [**Initialisation de la base de données**](#initialisation-de-la-base-de-données)
+  - [**Mise en place du frontend**](#mise-en-place-du-frontend)
+  - [**Mise en place du cache**](#mise-en-place-du-cache)
+  - [**Installation de Redis**](#installation-de-redis)
+  - [Configuration du système de cache Superset](#configuration-du-système-de-cache-superset)
+- [Mise en place du système de requêtage asynchrone](#mise-en-place-du-système-de-requêtage-asynchrone)
+  - [**Lancement de Superset**](#lancement-de-superset)
+  - [**Connexion à une base de données externe**](#connexion-à-une-base-de-données-externe)
 
 <br>
 
@@ -217,7 +207,6 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
       ```
    2. ### **Installation du frontend**
         Il faut ensuite installer les dépendances du package-lock.json avec :
-
         ```
         npm ci
         ```
@@ -231,52 +220,49 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
    Un système de cache est nécessaire sur Superset. Par défaut, sans système de cache configuré Superset, utilise une méthode de cache interne mais il est fortement conseillé d'utiliser un autre outil afin d'optimiser les requêtes.
 
    Nous allons donc installer **Redis** et configurer Superset à des fins de mise en cache.
-
    ## **Installation de Redis**
         **Upgrade apt-get :**
-        ```
-        sudo apt-get update
-        ```
-        ```
-        sudo apt-get upgrade
-        ```
+            ```
+            sudo apt-get update
+            ```
+            ```
+            sudo apt-get upgrade
+            ```
         **Installer le serveur redis :**
-       
-        ```
-        sudo apt-get install redis-server
-        ```
+            ```
+            sudo apt-get install redis-server
+            ```
         **Changer le fichier de configuration redis :**
-        ```
-        sudo nano /etc/redis/redis.conf
-        ```
+            ```
+            sudo nano /etc/redis/redis.conf
+            ```
        **Ajouter au fichier les lignes suivantes :**
-        ```
-        **# 128 MB max memory**
+            ```
+            **# 128 MB max memory**
 
-        **maxmemory 128mb**
+            **maxmemory 128mb**
 
-        **# When mem overflow remove according to LRU algorithm**
+            **# When mem overflow remove according to LRU algorithm**
 
-        **maxmemory-policy allkeys-lru**
-        ```
+            **maxmemory-policy allkeys-lru**
+            ```
         **Redémarrer et activer redis au redémarrage :**
-
             **Redémarrer redis :**
-            ```
-            sudo systemctl restart redis-server.service
-            ```
-            - Activer redis au redémarrage :
-            ```
-            sudo systemctl enable redis-server.service
-            ```
+                ```
+                sudo systemctl restart redis-server.service
+                ```
+            **Activer redis au redémarrage :**
+                ```
+                sudo systemctl enable redis-server.service
+                ```
             **S'assurer que redis s'affiche dans htop (touche F10 pour sortir de htop) :**
-            ```
-            htop
-            ```
+                ```
+                htop
+                ```
             **Pour s'assurer que redis fonctionne il est possible de lancer la commande suivante :**
-            ```
-            redis-cli monitor
-            ```
+                ```
+                redis-cli monitor
+                ```
 ## Configuration du système de cache Superset
 
     Il faut dans un premier temps activer l'environnement virtuel depuis lequel Superset est lancé :
