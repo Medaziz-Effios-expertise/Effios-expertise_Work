@@ -328,12 +328,15 @@ gunicorn -w 10 -k gevent --timeout 120 -b 0.0.0.0:8088 --limit-request-line 0 --
 ```
 ## **Connexion à une base de données externe**
 
-1. **Aller dans l'onglet « + » ensuite Data puis « Connect database »**
+1. **Aller dans l'onglet « + » ensuite Data puis « Connect database »** 
 ![Sorry something unexpected occured!!](static_images/path_to_db.png)
+
 2. **Choisir le type de base de données à connecter (MYSQL par exemple)**
 ![Sorry something unexpected occured!!](static_images/select_db.png)
+  
 3. **Renseigner les informations nécessaires**
 ![Sorry something unexpected occured!!](static_images/edit_db_data.png)
+  
 4. **Tester la connexion**
 
 <br>
