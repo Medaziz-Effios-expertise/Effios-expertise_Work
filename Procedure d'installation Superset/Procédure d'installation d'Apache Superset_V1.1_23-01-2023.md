@@ -22,7 +22,7 @@ Une démarche accompagnée par
   - [**Mise en place du cache**](#mise-en-place-du-cache)
   - [**Installation de Redis**](#installation-de-redis)
   - [**Configuration du système de cache Superset**](#configuration-du-système-de-cache-superset)
-- [**Mise en place du système de requêtage asynchrone**](#mise-en-place-du-système-de-requêtage-asynchrone)
+- [**Mise en place du système de requêtage asynchrone**s](#mise-en-place-du-système-de-requêtage-asynchrones)
   - [**Lancement de Superset**](#lancement-de-superset)
   - [**Connexion à une base de données externe**](#connexion-à-une-base-de-données-externe)
 
@@ -273,7 +273,7 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
         ```
         pip install redis
         ```
-# **Mise en place du système de requêtage asynchrone**
+# **Mise en place du système de requêtage asynchrone**s
 
     Le fichier de configuration **superset\_config.py** est à mettre à jour avec les configurations permettant l'utilisation de Redis et de Celery. Nous vous fournissons le modèle de ce fichier de configuration mis à jour, veuillez mettre à jour la SECRET\_KEY et la base de de données PostgreSQL.
 
