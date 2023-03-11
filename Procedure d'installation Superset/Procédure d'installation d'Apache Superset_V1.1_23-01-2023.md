@@ -4,7 +4,7 @@
 
 Une démarche accompagnée par
 
-![Sorry something unexpected occured!!](static_images/Effios_logo.png)
+![Sorry something unexpected occured!!](static_images/logo-effios.png)
 
 | Version | Date | Objet | Statut |
 | --- | --- | --- | --- |
@@ -335,5 +335,8 @@ gunicorn -w 10 -k gevent --timeout 120 -b 0.0.0.0:8088 --limit-request-line 0 --
 3. **Renseigner les informations nécessaires**
 ![Sorry something unexpected occured!!](static_images/edit_db_data.png)
 4. **Tester la connexion**
+
+<br>
+<br>
 
 Source : [https://github.com/apache/superset/blob/master/CONTRIBUTING.md#setup-local-environment-for-development](https://github.com/apache/superset/blob/master/CONTRIBUTING.md#setup-local-environment-for-development)
