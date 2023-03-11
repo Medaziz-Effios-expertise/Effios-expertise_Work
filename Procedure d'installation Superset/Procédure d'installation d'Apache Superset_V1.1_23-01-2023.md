@@ -221,48 +221,48 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
 
    Nous allons donc installer **Redis** et configurer Superset à des fins de mise en cache.
    ## **Installation de Redis**
-        **Upgrade apt-get :**
-            ```
-            sudo apt-get update
-            ```
-            ```
-            sudo apt-get upgrade
-            ```
-        **Installer le serveur redis :**
-            ```
-            sudo apt-get install redis-server
-            ```
-        **Changer le fichier de configuration redis :**
-            ```
-            sudo nano /etc/redis/redis.conf
-            ```
-       **Ajouter au fichier les lignes suivantes :**
-            ```
-            **# 128 MB max memory**
+    **Upgrade apt-get :**
+        ```
+        sudo apt-get update
+        ```
+        ```
+        sudo apt-get upgrade
+        ```
+    **Installer le serveur redis :**
+        ```
+        sudo apt-get install redis-server
+        ```
+    **Changer le fichier de configuration redis :**
+        ```
+        sudo nano /etc/redis/redis.conf
+        ```
+    **Ajouter au fichier les lignes suivantes :**
+        ```
+        **# 128 MB max memory**
 
-            **maxmemory 128mb**
+        **maxmemory 128mb**
 
-            **# When mem overflow remove according to LRU algorithm**
+        **# When mem overflow remove according to LRU algorithm**
 
-            **maxmemory-policy allkeys-lru**
+        **maxmemory-policy allkeys-lru**
+        ```
+    **Redémarrer et activer redis au redémarrage :**
+        **Redémarrer redis :**
             ```
-        **Redémarrer et activer redis au redémarrage :**
-            **Redémarrer redis :**
-                ```
-                sudo systemctl restart redis-server.service
-                ```
-            **Activer redis au redémarrage :**
-                ```
-                sudo systemctl enable redis-server.service
-                ```
-            **S'assurer que redis s'affiche dans htop (touche F10 pour sortir de htop) :**
-                ```
-                htop
-                ```
+            sudo systemctl restart redis-server.service
+            ```
+        **Activer redis au redémarrage :**
+            ```
+            sudo systemctl enable redis-server.service
+            ```
+        **S'assurer que redis s'affiche dans htop (touche F10 pour sortir de htop) :**
+            ```
+            htop
+            ```
             **Pour s'assurer que redis fonctionne il est possible de lancer la commande suivante :**
-                ```
-                redis-cli monitor
-                ```
+            ```
+            redis-cli monitor
+            ```
 ## **Configuration du système de cache Superset**
 
     Il faut dans un premier temps activer l'environnement virtuel depuis lequel Superset est lancé :
