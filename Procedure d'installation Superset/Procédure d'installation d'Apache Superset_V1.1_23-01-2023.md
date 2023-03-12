@@ -14,7 +14,6 @@ Une démarche accompagnée par
 # Table des matières
   - [**Mise en place de l'environnement** :](#mise-en-place-de-lenvironnement-)
   - [**Mise en place du backend**](#mise-en-place-du-backend)
-  - [**Initialisation de la base de données**](#initialisation-de-la-base-de-données)
   - [**Mise en place du frontend**](#mise-en-place-du-frontend)
   - [**Mise en place du cache**](#mise-en-place-du-cache)
   - [**Installation de Redis**](#installation-de-redis)
@@ -95,7 +94,7 @@ L'installation de Superset se fait ensuite en deux temps : l'installation du bac
        ```
        pip install -e .
        ```
-## **Initialisation de la base de données**
+### **Initialisation de la base de données**
 
 Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un environnement de production. Il vaut mieux utiliser MySQL ou PostgreSQL. Voici les étapes à suivre pour mettre en place une base de données PostgreSQL pour Superset :
 
