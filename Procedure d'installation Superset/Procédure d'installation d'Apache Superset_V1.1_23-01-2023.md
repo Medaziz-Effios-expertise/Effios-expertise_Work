@@ -12,8 +12,6 @@ Une démarche accompagnée par
 | 1.0 | 14/12/2022 |- Rédaction d'une procédure d'installation d'Apache Superset | Diffusable pour expérimentation |
 
 # Table des matières
-- [**Procédure d'installation d'Apache Superset**](#procédure-dinstallation-dapache-superset)
-- [Table des matières](#table-des-matières)
   - [**Mise en place de l'environnement** :](#mise-en-place-de-lenvironnement-)
   - [**Mise en place du backend**](#mise-en-place-du-backend)
   - [**Initialisation de la base de données**](#initialisation-de-la-base-de-données)
