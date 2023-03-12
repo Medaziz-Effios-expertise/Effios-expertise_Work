@@ -19,7 +19,7 @@ Une démarche accompagnée par
   - [**Mise en place du cache**](#mise-en-place-du-cache)
   - [**Installation de Redis**](#installation-de-redis)
   - [**Configuration du système de cache Superset**](#configuration-du-système-de-cache-superset)
-- [**Mise en place du système de requêtage asynchrone**s](#mise-en-place-du-système-de-requêtage-asynchrones)
+  - [**Mise en place du système de requêtage asynchrone**s](#mise-en-place-du-système-de-requêtage-asynchrones)
   - [**Lancement de Superset**](#lancement-de-superset)
   - [**Connexion à une base de données externe**](#connexion-à-une-base-de-données-externe)
 
