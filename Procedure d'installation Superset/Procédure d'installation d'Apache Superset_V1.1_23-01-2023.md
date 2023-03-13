@@ -317,7 +317,7 @@ pip install gevent
 ```
 **Pour lancer Superset, il faut démarrer le serveur ssur le port 8088 avec Gunicorn (en mode Async) avec la commande :**
 ```
-gunicorn -w 10 -k gevent --timeout 120 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field\_size 0 "superset.app:create\_app()"
+gunicorn -w 10 -k gevent --timeout 120 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field_size 0 "superset.app:create_app()"
 ```
 ## **Connexion à une base de données externe**
 
