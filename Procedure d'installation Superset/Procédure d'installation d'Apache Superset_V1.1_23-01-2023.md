@@ -1,8 +1,9 @@
 <img src="static_images/Ministry_logo.png" alt="Sorry something unexpected occured!!" style="width:500px;" /> 
-
+<br>
 # **Procédure d'installation d'Apache Superset**
 
 Une démarche accompagnée par
+<br>
 <img src="static_images/logo-effios.png" alt="Sorry something unexpected occured!!" style="width:250px;" /> 
 
 | Version | Date | Objet | Statut |
