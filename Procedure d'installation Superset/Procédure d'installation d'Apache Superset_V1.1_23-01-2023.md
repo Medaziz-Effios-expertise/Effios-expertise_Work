@@ -43,7 +43,7 @@ L'installation de Superset se fait ensuite en deux temps : l'installation du bac
 
     Pour permettre l'installation du backend, des dépendances doivent d'abord être installées en lançant les commandes suivantes qui vont permettre l'utilisation de **MySQL** et de **PostgreSQL**  :
     ```
-    sudo apt update & apt upgrade
+    sudo apt update & sudo apt upgrade
     ```
     ```
     sudo apt-get install build-essential libssl-dev libffi-dev python3-dev python3-pip libsasl2-dev libldap2-dev libmysqlclient-dev
