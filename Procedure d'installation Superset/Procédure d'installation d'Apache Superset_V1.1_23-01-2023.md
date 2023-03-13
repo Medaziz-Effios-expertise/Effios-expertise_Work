@@ -1,4 +1,4 @@
-<img src="static_images/Ministry_logo.png" alt="Sorry something unexpected occured!!" style="margin-left:500px;width:800px;" /> 
+<img src="static_images/Ministry_logo.png" alt="Sorry something unexpected occured!!" style="width:800px;" /> 
 # **Procédurstatic_images/Ministry_logo.pnge d'installation d'Apache Superset**
 
 Une démarche accompagnée par
