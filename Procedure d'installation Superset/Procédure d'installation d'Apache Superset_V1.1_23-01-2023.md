@@ -1,5 +1,4 @@
-![Sorry something unexpected occured!!](static_images/Ministry_logo.png)
-<img src="static_images/Ministry_logo.png" alt="Sorry something unexpected occured!!" width="150" height="100" /> 
+<img src="static_images/Ministry_logo.png" alt="Sorry something unexpected occured!!" style="margin-left:50px;" /> 
 # **Procédurstatic_images/Ministry_logo.pnge d'installation d'Apache Superset**
 
 Une démarche accompagnée par
