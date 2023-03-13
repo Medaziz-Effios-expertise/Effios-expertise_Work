@@ -9,17 +9,26 @@ Une démarche accompagnée par <br>
 | 1.0 | 14/12/2022 |- Rédaction d'une procédure d'installation d'Apache Superset | Diffusable pour expérimentation |
 
 # Table des matières
+- [**Procédure d'installation d'Apache Superset** ](#procédure-dinstallation-dapache-superset-)
+- [Table des matières](#table-des-matières)
+- [Creation of the Superset main user](#creation-of-the-superset-main-user)
   - [**Mise en place de l'environnement** :](#mise-en-place-de-lenvironnement-)
   - [**Mise en place du backend**](#mise-en-place-du-backend)
+    - [**Initialisation de la base de données**](#initialisation-de-la-base-de-données)
   - [**Mise en place du frontend**](#mise-en-place-du-frontend)
   - [**Mise en place du cache**](#mise-en-place-du-cache)
   - [**Installation de Redis**](#installation-de-redis)
   - [**Configuration du système de cache Superset**](#configuration-du-système-de-cache-superset)
-  - [**Mise en place du système de requêtage asynchrone**s](#mise-en-place-du-système-de-requêtage-asynchrones)
+- [**Mise en place du système de requêtage asynchrone**s](#mise-en-place-du-système-de-requêtage-asynchrones)
   - [**Lancement de Superset**](#lancement-de-superset)
   - [**Connexion à une base de données externe**](#connexion-à-une-base-de-données-externe)
 
 <br>
+
+# Creation of the Superset main user
+```
+useradd -m superset 
+```
 
 ## **Mise en place de l'environnement** :
 
@@ -48,9 +57,6 @@ L'installation de Superset se fait ensuite en deux temps : l'installation du bac
     ```
     sudo apt-get install build-essential libssl-dev libffi-dev python3-dev python3-pip libsasl2-dev libldap2-dev libmysqlclient-dev
     ```
-    ```
-    pip install psycopg2
-    ```
 
     Superset fonctionne avec **Python 3.8** ou **3.9** , si vous n'utilisez pas l'une de ces versions, il faut lancer ces commandes :
     ```
@@ -62,18 +68,7 @@ L'installation de Superset se fait ensuite en deux temps : l'installation du bac
 2. ### **Installation du backend**
 
    1. **Créer un environnement virtuel**
-
-        Si vous avez déjà la version 3.8 ou 3.9 de Python :
-        ```
-        sudo apt-get install python3-venv
-        ```
-        ```
-        python3 -m venv venv
-        ```
-        ```
-        source venv/bin/activate
-        ```
-        Sinon, si vous venez d'installer Python 3.9 avec les commandes précédentes :
+   
         ```
         sudo apt-get install python3.9-dev python3.9-venv
         ```
@@ -102,7 +97,7 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
        sudo apt update && sudo apt -y full-upgrade
        ```
        ```
-       [-f /var/run/reboot-required] && sudo reboot -f
+       [ -f /var/run/reboot-required ] && sudo reboot -f
        ```
        ```
        sudo apt install vim curl wget gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates
@@ -126,50 +121,55 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
        ```
    4. **Créer une base de données PostgreSQL**
 
-   5. **Se connecter à PostgreSQL**
-       ```
-       sudo -u postgres psql
-       ```
-   6. **Créer une base de données et un utilisateur pour Superset**
-      
-       1. create database supersetdb;
-
-       2. create user superset1 with encrypted password 'Passw0rd';
-
-       3. grant all privileges on database supersetdb to superset1;
-
-2. ### **Importer la base de données de la PHE dans la base de données PostgreSQL**
+      1. **Se connecter à PostgreSQL**
+            ```bash
+            sudo -u postgres psql
+            ```
+      2. **Créer une base de données et un utilisateur pour Superset**
+            ```sql
+            create database supersetdb;
+            ```
+            ```sql
+            create user superset1 with encrypted password 'Password';
+            ```
+            ```sql
+            grant all privileges on database supersetdb to superset1;
+            ```
+            ```sql
+            \q
+            ```
+2. ### **Importer la base de données de la PHE dans la base de données PostgreSQL.**
 
     Nous vous fournissons un dump PostgreSQL avec les données de l'instance de Superset de la PHE qu'il vous faut importer dans la base de données que vous avez créée.
     ```
     su – postgres
     ```
     ```
-    psql supersetdb \< superset.dump
+    psql supersetdb < superset.dump
     ```
     1. **Mettre à jour la configuration de Superset**
 
-        Dans le dossier **superset/superset** : créer un fichier superset\_config.py. Au lieu de modifier le fichier config.py, ce seront les informations ajoutées au fichier superset\_config.py qui seront prises en compte.
+        Dans le dossier **superset/superset** : créer un fichier superset_config.py. Au lieu de modifier le fichier config.py, ce seront les informations ajoutées au fichier superset_config.py qui seront prises en compte.
 
-        Nous vous fournissons le modèle de ce fichier de configuration, veuillez mettre à jour la SECRET\_KEY et la base de de données PostgreSQL avec vos informations.
+        Nous vous fournissons le modèle de ce fichier de configuration, veuillez mettre à jour la SECRET_KEY et la base de de données PostgreSQL avec vos informations.
 
         Pour que les modifications soient prises en compte, il faut définir le chemin vers le fichier de configuration :
         ```
-        export SUPERSET\_CONFIG\_PATH=/path/to/your/superset\_config.py
+        export SUPERSET_CONFIG_PATH=/path/to/your/superset_config.py
         ```
-    1. **Initialiser la base de données**
+    2. **Initialiser la base de données**
         ```
         superset db upgrade
         ```
         _Si vous avez une erreur de type_ _ **ModuleNotFoundError: No module name 'cryptography.hazmat.backends.openssl.x509'** __. Exécutez :_
         ```
-        _pip uninstall cryptography_
+        pip uninstall cryptography_
         ```
         ```
-        _pip install cryptography==3.4.7_
+        pip install cryptography==3.4.7_
         ```
 
-    1. **Mettre à jour les rôles et permissions par défaut**
+    3. **Mettre à jour les rôles et permissions par défaut**
         ```
         superset init
         ```
@@ -231,13 +231,12 @@ sudo nano /etc/redis/redis.conf
 ```
 **Ajouter au fichier les lignes suivantes :**
 ```
-28 MB max memory
+#28 MB max memory
 maxmemory 128mb
-**When mem overflow remove according to LRU algorithm**
+#When mem overflow remove according to LRU algorithm
 maxmemory-policy allkeys-lru
 ```
 **Redémarrer et activer redis au redémarrage :**
-<br>
 **Redémarrer redis :**
 ```
 sudo systemctl restart redis-server.service
