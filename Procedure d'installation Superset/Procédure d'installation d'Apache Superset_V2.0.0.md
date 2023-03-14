@@ -113,7 +113,7 @@ Par défaut, Superset utilise SQLite mais ce n'est pas conseillé pour un enviro
        curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
        ```
        ```bash
-       sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb\_release -cs)-pgdg main" \> /etc/apt/sources.list.d/pgdg.list'
+       sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" \> /etc/apt/sources.list.d/pgdg.list'
        ```
        ```bash
        sudo apt update
@@ -267,7 +267,7 @@ pip install redis
 ```
 ## **Mise en place du système de requêtage asynchrone**s
 
-Le fichier de configuration **superset\_config.py** est à mettre à jour avec les configurations permettant l'utilisation de Redis et de Celery. Nous vous fournissons le modèle de ce fichier de configuration mis à jour, veuillez mettre à jour la SECRET\_KEY et la base de de données PostgreSQL.
+Le fichier de configuration **superset_config.py** est à mettre à jour avec les configurations permettant l'utilisation de Redis et de Celery. Nous vous fournissons le modèle de ce fichier de configuration mis à jour, veuillez mettre à jour la SECRET_KEY et la base de de données PostgreSQL.
 
    Il faut ensuite mettre à jour le fichier **config.py**  :
 
@@ -293,11 +293,11 @@ export SUPERSET_CONFIG_PATH=/path/to/your/superset_config.py
 ```
 **Lancer celery (worker et beat) sur un terminal**
 ```bash
-celery --app=superset.tasks.celery\_app:app worker --pool=prefork -O fair -n worker%i%h & celery --app=superset.tasks.celery\_app:app beat
+celery --app=superset.tasks.celery_app:app worker --pool=prefork -O fair -n worker%i%h & celery --app=superset.tasks.celery_app:app beat
 ```
 **Lancer flower sur un autre terminal**
 ```bash
-celery --app=superset.tasks.celery\_app:app flower --port=7386
+celery --app=superset.tasks.celery_app:app flower --port=7386
 ```
 **Si vous rencontrer l'erreur :**
 
@@ -305,7 +305,7 @@ Please make sure you give each node a unique nodename using the celery worker `-
     warnings.warn(DuplicateNodenameWarning(
     **Vous pouvez lancer :**
 ```bash
-ps auxww | grep 'celery\_app' | awk '{print $2}' | xargs kill -9
+ps auxww | grep 'celery_app' | awk '{print $2}' | xargs kill -9
 ```
 ## **Activation de la traduction**
 ### **Activation de la sélection de la langue**
