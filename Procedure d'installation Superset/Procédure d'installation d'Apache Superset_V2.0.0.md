@@ -307,7 +307,7 @@ Please make sure you give each node a unique nodename using the celery worker `-
 ```bash
 ps auxww | grep 'celery_app' | awk '{print $2}' | xargs kill -9
 ```
-## **Activation de la traduction**
+## **Activation et mis a jour de la traduction**
 ### **Activation de la sélection de la langue**
 Ajoutez la variable LANGUAGES à votre superset_config.py. Avoir plus d'une option à l'intérieur ajoutera une liste déroulante de sélection de langue à l'interface utilisateur sur le côté droit de la barre de navigation.
 ```python
